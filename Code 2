@@ -1,0 +1,14 @@
+# Number of heads observed
+heads = 7
+
+# Total number of coin tosses
+tosses = 10
+
+# Calculate Maximum Likelihood Estimate (MLE)
+p_mle = heads / tosses
+
+# Display the result
+print("MLE Probability =", p_mle)
+
+out put
+MLE Probability = 0.7
