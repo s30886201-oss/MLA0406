@@ -1,0 +1,54 @@
+import pandas as pd
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+
+# -------------------------------
+# STEP 1: Training Data (10 students)
+# -------------------------------
+data = {
+    'Attendance': [85, 90, 78, 60, 88, 76, 95, 70, 82, 79],
+    'Eligible':   [1,  1,  0,  0,  1,  0,  1,  0,  1,  0]
+}
+
+df = pd.DataFrame(data)
+
+X_train = df[['Attendance']]
+y_train = df['Eligible']
+
+# -------------------------------
+# STEP 2: Train Decision Tree
+# -------------------------------
+model = DecisionTreeClassifier()
+model.fit(X_train, y_train)
+
+# -------------------------------
+# STEP 3: Test Data (5 students)
+# -------------------------------
+test_data = {
+    'Attendance': [83, 77, 91, 68, 80]
+}
+
+test_df = pd.DataFrame(test_data)
+
+# Actual output (based on rule)
+y_actual = [1, 0, 1, 0, 1]
+
+# -------------------------------
+# STEP 4: Prediction
+# -------------------------------
+y_pred = model.predict(test_df)
+
+print("Predicted Output:", y_pred)
+print("Actual Output   :", y_actual)
+
+# -------------------------------
+# STEP 5: Error Analysis
+# -------------------------------
+
+# Accuracy
+accuracy = accuracy_score(y_actual, y_pred)
+print("\nAccuracy:", accuracy)
+
+# Confusion Matrix
+cm = confusion_matrix(y_actual, y_pred)
+print("\nConfusion Matrix:\n", cm)
