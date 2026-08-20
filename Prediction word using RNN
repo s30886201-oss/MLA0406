@@ -1,0 +1,25 @@
+import numpy as np
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import SimpleRNN, Dense
+
+# Input: I am going
+# Output: home
+
+# Word numbers
+# I=1, am=2, going=3, home=4
+
+X = np.array([[[1], [2], [3]]])
+y = np.array([[4]])
+
+# Create RNN
+model = Sequential()
+
+model.add(SimpleRNN(10, input_shape=(3, 1)))
+model.add(Dense(10, activation='relu'))
+model.add(Dense(1))
+
+model.compile(optimizer='adam', loss='mse')
+
+model.fit(X, y, epochs=100, verbose=0)
+
+print("RNN training completed")
